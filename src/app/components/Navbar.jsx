@@ -13,7 +13,12 @@ export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box px={4} backdropFilter='blur(10px)' position='fixed' w='100%'>
+      <Box
+        px={4}
+        backdropFilter='blur(10px)'
+        position='fixed'
+        w='100%'
+        zIndex={1000}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>
             <Image w={'200px'} src={spacexlogo} alt='SpaceX Logo' />
