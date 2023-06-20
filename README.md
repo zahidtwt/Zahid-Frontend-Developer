@@ -22,8 +22,7 @@ The application displays a list of capsules. The capsules can be filtered by the
 * Vercel
 ## Video Demo
 Click on the image below to view the video demo of the application.
-[![Video Demo](
-https://img.youtube.com/vi/JHLob7H18So.jpg)](https://www.youtube.com/watch?v=JHLob7H18So)
+[![Video Demo](https://img.youtube.com/vi/JHLob7H18So.jpg)](https://www.youtube.com/watch?v=JHLob7H18So)
 
 ## Screenshots
 ![Screenshot 1](./assets/image.png "HomePage Dark Theme")
