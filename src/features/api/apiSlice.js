@@ -2,15 +2,15 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '/fakeApi' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.spacexdata.com/v3' }),
   endpoints: (builder) => ({
-    getPosts: builder.query({
-      query: () => '/posts',
+    getCapsules: builder.query({
+      query: () => '/capsules',
     }),
-    getPost: builder.query({
-      query: (postId) => `/posts/${postId}`,
+    getCapsule: builder.query({
+      query: (capsuleSerial) => `/capsules/${capsuleSerial}`,
     }),
   }),
 });
 
-export const { useGetPostsQuery, useGetPostQuery } = apiSlice;
+export const { useGetCapsulesQuery, useGetCapsuleQuery } = apiSlice;
