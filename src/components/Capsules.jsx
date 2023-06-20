@@ -1,4 +1,11 @@
-import { HStack, VStack, SimpleGrid, Button, Text } from '@chakra-ui/react';
+import {
+  HStack,
+  VStack,
+  SimpleGrid,
+  Button,
+  Text,
+  Spinner,
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useGetCapsulesQuery } from '../features/api/apiSlice';
 import CapsuleCard from './CapsuleCard';
@@ -12,10 +19,14 @@ const Capsules = () => {
   const { capsules: filters } = useSelector((state) => state);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <VStack>
+        <Spinner size='xl' />
+      </VStack>
+    );
   }
   if (isError) {
-    return <div>Something went wrong</div>;
+    return <VStack>Something went wrong</VStack>;
   }
 
   const filteredCapsules = capsules?.filter((capsule) => {
