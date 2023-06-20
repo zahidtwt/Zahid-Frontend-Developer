@@ -6,8 +6,6 @@ import {
   Heading,
   Text,
   Button,
-  Icon,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import space from '../assets/space-x.json';
 import Lottie from 'lottie-react';
@@ -17,7 +15,7 @@ export default function Hero() {
       <Stack
         align={'center'}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 20 }}
+        pt={{ base: 28, md: 20 }}
         pb={{ base: 20, md: 5 }}
         direction={{ base: 'column', md: 'row' }}>
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>

@@ -40,7 +40,7 @@ const CapsuleFilter = () => {
       rounded='2xl  '
       p={4}
       gap={{ sm: 4, md: 32 }}>
-      <Select onChange={handleStatusChange} width='150px' mr={2} py={2}>
+      <Select onChange={handleStatusChange} width='150px' mr={2}>
         <option value=''>Select Status</option>
         <option value='active'>Active</option>
         <option value='retired'>Retired</option>

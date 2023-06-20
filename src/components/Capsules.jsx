@@ -1,5 +1,5 @@
 import { HStack, VStack, SimpleGrid, Button, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useGetCapsulesQuery } from '../features/api/apiSlice';
 import CapsuleCard from './CapsuleCard';
 import { useSelector } from 'react-redux';
@@ -10,10 +10,6 @@ const Capsules = () => {
 
   const { data: capsules, isLoading, isError } = useGetCapsulesQuery();
   const { capsules: filters } = useSelector((state) => state);
-
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -29,10 +25,7 @@ const Capsules = () => {
     if (filters.type.length && capsule.capsule_id !== filters.type) {
       return false;
     }
-    console.log(
-      capsule.original_launch,
-      new Date(filters.launchingDate).toISOString()
-    );
+
     if (
       filters.launchingDate &&
       capsule.original_launch?.slice(0, 10) !==
