@@ -9,7 +9,7 @@ import {
   Icon,
   useColorModeValue,
 } from '@chakra-ui/react';
-import space from '../../assets/space-x.json';
+import space from '../assets/space-x.json';
 import Lottie from 'lottie-react';
 export default function Hero() {
   return (
@@ -17,7 +17,8 @@ export default function Hero() {
       <Stack
         align={'center'}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
+        py={{ base: 20, md: 20 }}
+        pb={{ base: 20, md: 5 }}
         direction={{ base: 'column', md: 'row' }}>
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
@@ -60,10 +61,20 @@ export default function Hero() {
               px={6}
               colorScheme={'purple'}
               bg={'purple.400'}
-              _hover={{ bg: 'purple.500' }}>
+              _hover={{ bg: 'purple.500' }}
+              onClick={() => {
+                window.location.href = '#capsules';
+              }}>
               See Launches
             </Button>
-            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6}>
+            <Button
+              rounded={'full'}
+              size={'lg'}
+              fontWeight={'normal'}
+              px={6}
+              onClick={() => {
+                window.location.href = 'https://www.spacex.com';
+              }}>
               More Info
             </Button>
           </Stack>

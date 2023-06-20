@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
 import './App.css';
-import Hero from './app/components/Hero';
-import Nav from './app/components/Navbar';
-import Rockets from './app/components/Rockets';
+import CapsuleFilter from './components/CapsuleFilter';
+import Hero from './components/Hero';
+import Nav from './components/Navbar';
+import Capsules from './components/Capsules';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <div className='gradient' />
       <Nav />
       <Hero />
-      <Rockets />
+      <Capsules />
     </>
   );
 }

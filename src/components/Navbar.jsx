@@ -7,7 +7,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import spacexlogo from '../../assets/spacexlogo.png';
+import spacexlogo from '../assets/spacexlogo.png';
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();

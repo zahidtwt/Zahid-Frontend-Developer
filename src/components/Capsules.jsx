@@ -1,8 +1,9 @@
-import { HStack, VStack, SimpleGrid, Button } from '@chakra-ui/react';
+import { HStack, VStack, SimpleGrid, Button, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useGetCapsulesQuery } from '../features/api/apiSlice';
 import CapsuleCard from './CapsuleCard';
 import { useSelector } from 'react-redux';
+import CapsuleFilter from './CapsuleFilter';
 
 const Capsules = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,6 +48,7 @@ const Capsules = () => {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+    window.location = '#capsules';
   };
 
   const startIndex = (currentPage - 1) * capsulesPerPage;
@@ -54,19 +56,22 @@ const Capsules = () => {
   const pageCapsules = filteredCapsules.slice(startIndex, endIndex);
 
   return (
-    <>
+    <div id='capsules'>
       <VStack>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={5}>
-          {pageCapsules.map((capsule) => (
-            <CapsuleCard
-              key={capsule.capsule_serial}
-              capsuleSerial={capsule.capsule_serial}
-              type={capsule.type}
-              status={capsule.status}
-              launchingDate={capsule.original_launch}
-            />
+        <Text fontSize='4xl' fontWeight='bold' my={{ base: 2, md: 4 }}>
+          Capsules
+        </Text>
+        <CapsuleFilter />
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={5} mt={5}>
+          {pageCapsules.map((capsule, id) => (
+            <CapsuleCard key={id} capsule={capsule} />
           ))}
         </SimpleGrid>
+        {!pageCapsules.length && (
+          <Text fontSize='xl' fontWeight='bold' my={{ base: 2, md: 4 }}>
+            No capsules found!
+          </Text>
+        )}
         <HStack mt={4}>
           <Button
             isDisabled={currentPage === 1}
@@ -80,7 +85,7 @@ const Capsules = () => {
           </Button>
         </HStack>
       </VStack>
-    </>
+    </div>
   );
 };
 
