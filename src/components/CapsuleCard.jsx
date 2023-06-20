@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   Box,
   Center,
@@ -7,35 +7,45 @@ import {
   Text,
   Stack,
   Image,
-  HStack,
   Flex,
   VStack,
   Badge,
 } from '@chakra-ui/react';
+import CapsuleModal from './CapsuleModal';
+import capsuleImg from '../assets/capsule.png';
 
-const CapsuleCard = ({ status, launchingDate, capsuleSerial, type }) => {
-  const IMAGE =
-    'https://cdn.dribbble.com/users/1355613/screenshots/6038681/media/7f7da0e1095700faa024a34d27a57b7d.jpg?compress=1&resize=1600x1200&vertical=center';
+const CapsuleCard = ({ capsule }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
 
-  const formattedDate = new Date(launchingDate).toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const formattedDate = new Date(capsule.original_launch).toLocaleDateString(
+    'en-US',
+    {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }
+  );
 
   return (
-    <Center py={12}>
+    <Center py={6}>
       <Box
         role={'group'}
         p={6}
         maxW={'330px'}
-        w={'full'}
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'xl'}
         rounded={'2xl'}
         pos={'relative'}
         zIndex={1}
-        cursor={'pointer'}>
+        cursor={'pointer'}
+        onClick={handleOpenModal}>
         <Box
           rounded={'2xl'}
           mt={-12}
@@ -49,34 +59,35 @@ const CapsuleCard = ({ status, launchingDate, capsuleSerial, type }) => {
             pos: 'absolute',
             top: 5,
             left: 0,
-            backgroundImage: `url(${IMAGE})`,
+            backgroundImage: `url(${capsuleImg})`,
             filter: 'blur(20px)',
             zIndex: -1,
-            opacity: 0.5,
+            opacity: 0.2,
           }}
           _groupHover={{
             _after: {
               filter: 'blur(30px)',
+              opacity: 0.4,
             },
           }}>
           <Image
             rounded={'2xl'}
             height={210}
-            width={282}
+            maxWidth={282}
             objectFit={'cover'}
-            src={IMAGE}
+            src={capsuleImg}
           />
         </Box>
-        <Stack pt={10}>
+        <Stack pt={0}>
           <VStack>
             <Text
               color={'gray.500'}
               fontSize={'sm'}
               textTransform={'uppercase'}>
-              {type}
+              {capsule.type}
             </Text>
             <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-              {capsuleSerial}
+              {capsule.capsule_serial}
             </Heading>
           </VStack>
           <Flex justifyContent='space-between' mt={2}>
@@ -85,22 +96,26 @@ const CapsuleCard = ({ status, launchingDate, capsuleSerial, type }) => {
               px={2}
               rounded={'md'}
               colorScheme={
-                status === 'destroyed'
+                capsule.status === 'destroyed'
                   ? 'red'
-                  : status === 'active'
+                  : capsule.status === 'active'
                   ? 'green'
-                  : status === 'retired'
+                  : capsule.status === 'retired'
                   ? 'yellow'
                   : 'gray'
               }>
-              {status}
+              {capsule.status}
             </Badge>
 
-            {/* <Text color={'gray.600'}>{status}</Text> */}
             <Text color={'gray.600'}>{formattedDate}</Text>
           </Flex>
         </Stack>
       </Box>
+      <CapsuleModal
+        capsule={capsule}
+        isOpen={isOpen}
+        onClose={handleCloseModal}
+      />
     </Center>
   );
 };
